@@ -1,0 +1,32 @@
+
+.navbar-inverse {
+    border-radius: 0px;
+}
+
+
+/* Form Validation  */
+
+.hasError {
+    box-shadow: 0px 0px 10px rgba(231, 76, 60,0.5);
+    border-color: rgba(231, 76, 60,0.5);
+}
+
+.hasNoError {
+    box-shadow: 0px 0px 10px rgba(22, 160, 133,0.5);
+    border-color: rgba(22, 160, 133,1.0);
+}
+
+
+
+body {
+    margin-top: 70px;  /*Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes.
+    background-color: transparent;*/
+}
+
+.full {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Wilkins_Building_1,_UCL,_London_-_Diliff.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
