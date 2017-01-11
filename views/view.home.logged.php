@@ -7,15 +7,14 @@
  */?>
 
 
-
-<div class="container">
-
-    <?php
+<div class="col-sm-8 col-sm-offset-2 col-xs-12">
 
 
+        <?php
+        Alert::displayMessage();
+        ?>
 
-    ?>
-
+        <h1>Home</h1>
 
 
 </div>

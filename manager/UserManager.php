@@ -46,15 +46,19 @@ class UserManager
         ));
     }
 
-    public function getUnique($id) {
+    public function find($id) {
         $q = $this->db->prepare('SELECT id,userType, userName, imgURL, homePageURL, profileColour, description, passWord FROM users WHERE id = :id');
         $q->execute(array(
             'id' => $id
         ));
 
         $donnes = $q->fetch(PDO::FETCH_ASSOC);
-
-        return new User($donnes);
+        $user = new User($donnes);
+        if (is_null($user)){
+            header('HTTP', true, 500);
+            exit();
+        }
+        return $user;
     }
 
     public function getUniqueUserName($userName) {
@@ -78,6 +82,11 @@ class UserManager
         ));
     }
 
+    public function promote(User $user){
+        $user->setUserType(100);
+        $this->save($user);
+    }
+
     public function save(User $user) {
         //Create or Update otherwise
         $q = $this->db->prepare('SELECT id,userType, userName, imgURL, homePageURL, profileColour, description, passWord FROM users WHERE id = :id');
@@ -93,5 +102,18 @@ class UserManager
         {
             $this->update($user);
         }
+        $_SESSION['user'] = $user;
+    }
+
+    public function getAll() {
+        $q = $this->db->prepare('SELECT * FROM users');
+        $q->execute();
+
+        $users = [];
+        while ($row = $q->fetch(PDO::FETCH_ASSOC)) {
+            array_push($users, User::createUserFromQuery($row));
+        }
+
+        return $users;
     }
 }

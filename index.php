@@ -7,6 +7,8 @@
  */
 
 require("header.php");
+$dbFactory = new DBFactory();
+$db = $dbFactory->getMysqlConnexionWithPDO();
 
 //If user is logged, show the logged home page
 //Otherwise show the visitor home page

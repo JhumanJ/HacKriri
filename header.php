@@ -43,6 +43,10 @@ function isLogged() {
     }
 }
 
-$dbFactory = new DBFactory();
-$db = $dbFactory->getMysqlConnexionWithPDO();
+function user(){
+    if(isset($_SESSION['user']) && $_SESSION['user'] instanceof User) {
+        $user = $_SESSION['user'];
+        return $user;
+    }
+}
 

@@ -42,6 +42,13 @@ class User
         return $arrayData;
     }
 
+    public static function createUserFromQuery($row){
+        $user = new User($row);
+
+        return $user;
+    }
+
+
 //    Getter Setters
 
     /**
@@ -66,6 +73,16 @@ class User
     public function getUserType()
     {
         return $this->userType;
+    }
+
+    public function userType(){
+        if ($this->userType==1){
+            return "User";
+        } else if ($this->userType==100){
+            return "Admin";
+        } else {
+            return "Unknown";
+        }
     }
 
     /**
@@ -170,6 +187,21 @@ class User
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function isAdmin(){
+
+        if ($this->getUserType() == 100){
+            return true;
+        }
+        return false;
+    }
+
+    public function canPublish(){
+        if ($this->getUserType() < 1){
+            return false;
+        }
+        return true;
     }
 
 

@@ -22,10 +22,10 @@
 
       <?php //Navbar if user is logged
         if(isLogged()) {
-            $user = $_SESSION['user'];
             ?>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"> <?php echo $user->getUserName(); ?> <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+            <li><a href="profile"> <?php echo user()->getUserName(); ?> <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+            <?php if (user()->isAdmin()){?><li><a href="admin"> Admin </a></li><?php } ?>
             <li><a href="logout.php">Log out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>
           <?php
