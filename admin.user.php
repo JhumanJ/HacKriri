@@ -44,7 +44,7 @@ if(isLogged() && user()->isAdmin() && isset($_POST["_method"])){
         }
     }
 
-    if($_POST["_method"]=="admin"){
+    else if($_POST["_method"]=="admin"){
         //check that id is set
         if(isset($_POST["_id"])){
             $user = $userManager->find((int)htmlspecialchars($_POST["_id"]));
@@ -67,7 +67,7 @@ if(isLogged() && user()->isAdmin() && isset($_POST["_method"])){
             exit();
         }
     }
-    if($_POST["_method"]=="snippet"){
+    else if($_POST["_method"]=="snippet"){
         //check that id is set
         if(isset($_POST["_id"])){
             $user = $userManager->find((int)htmlspecialchars($_POST["_id"]));
@@ -77,27 +77,77 @@ if(isLogged() && user()->isAdmin() && isset($_POST["_method"])){
                 $message->addText('<strong>Whoops</strong>! You can\'t change an admin\'s permission!');
                 $message->messageToSession();
                 header('Location: admin.php');
-            } else if($user->canPublish()){
-                $userManager->promote($user);
-                $message = new Alert('success', true);
-                $message->addText('<strong>Done</strong>! '.$user->getUserName().' is now an admin.');
-                $message->messageToSession();
-                header('Location: admin.php');
                 exit();
             } else {
-                $userManager->promote($user);
+                $userManager->toggleSnippet($user);
                 $message = new Alert('success', true);
-                $message->addText('<strong>Done</strong>! '.$user->getUserName().' is now an admin.');
+                $message->addText('<strong>Done</strong>! '.$user->getUserName().'\'s permission has been changed.');
                 $message->messageToSession();
                 header('Location: admin.php');
                 exit();
             }
         }
     }
-    $message = new Alert('danger', true);
-    $message->addText('<strong>Whoops</strong>! User id is missing.');
-    $message->messageToSession();
-    header('Location: admin.php');
+    else if($_POST["_method"]=="modify"){
+        //check that id is set
+        if(isset($_POST["_id"])){
+            $user = $userManager->find((int)htmlspecialchars($_POST["_id"]));
+            if ($user->getId()==user()->getId()){
+                header('Location: profile.php');
+                exit();
+            } else if ($user->isAdmin()){
+                $message = new Alert('danger', true);
+                $message->addText('<strong>Whoops</strong>! You can\'t change an admin\'s profile!');
+                $message->messageToSession();
+                header('Location: admin.php');
+                exit();
+            } else {
+                createPage('admin.user.modify');
+            }
+        }
+    }else if($_POST["_method"]=="update"){
+        //check that id is set
+        if(isset($_POST["_id"])){
+            $user = $userManager->find((int)htmlspecialchars($_POST["_id"]));
+            if ($user->getId()==user()->getId()){
+                header('Location: profile.php');
+                exit();
+            } else if ($user->isAdmin()){
+                $message = new Alert('danger', true);
+                $message->addText('<strong>Whoops</strong>! You can\'t change an admin\'s profile!');
+                $message->messageToSession();
+                header('Location: admin.php');
+                exit();
+            } else {
+
+                if(isset($_POST["imgURL"]) && $_POST["imgURL"]!=""){
+                    $user->setImgURL(htmlspecialchars($_POST["imgURL"]));
+                }
+                if(isset($_POST["profileColour"])&& $_POST["profileColour"]!=""){
+                    $user->setProfileColour(htmlspecialchars($_POST["profileColour"]));
+                }
+                if(isset($_POST["homePageURL"])&& $_POST["homePageURL"]!=""){
+                    $user->setHomePageURL(htmlspecialchars($_POST["homePageURL"]));
+                }
+                if(isset($_POST["description"])&& $_POST["description"]!=""){
+                    $user->setDescription(htmlspecialchars($_POST["description"]));
+                }
+                $userManager->save($user);
+                $message = new Alert('success', true);
+                $message->addText('<strong>Done</strong>! '.$user->getUserName().'\'s profile has been updated.');
+                $message->messageToSession();
+                header('Location: admin.php');
+                exit();
+
+            }
+        }
+    } else {
+        $message = new Alert('danger', true);
+        $message->addText('<strong>Whoops</strong>! User id is missing.');
+        $message->messageToSession();
+        header('Location: admin.php');
+        exit();
+    }
 
 } else {
 

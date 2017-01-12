@@ -4,7 +4,10 @@
  * User: Julien
  * Date: 29/01/16
  * Time: 12:39
- */ ?>
+ */
+
+global $userManager;
+?>
 
     <div class="container">
 
@@ -35,6 +38,31 @@
                 <a href="register.php"><p class="text-center">Click Here to register</p></a>
 
             </form>
+
+            <h4>User List</h4>
+            <table class="table table-hover">
+                <tr>
+                    <th class="text-center">UserName</th>
+                    <th class="text-center">Last Snippet Created</th>
+                    <th class="text-center">Link to Profile</th>
+                </tr>
+                <?php
+                foreach ($userManager->getAll() as $user){
+                    ?>
+                    <tr>
+                        <th class="text-center"><?php echo $user->getUserName(); ?></th>
+                        <th class="text-center"></th>
+                        <th class="text-center">
+                            <form method="GET" action="profile.php">
+                                <input name="user" type="hidden" value="<?php echo $user->getUserName(); ?>" />
+                                <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+                            </form>
+                        </th>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
 
 
         </div>

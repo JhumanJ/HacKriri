@@ -32,6 +32,7 @@
         } else {
           ?>
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.php">Login</a></li>
             <li><a href="register.php">Register</a></li>
           </ul>
           <?php

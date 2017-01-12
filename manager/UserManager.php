@@ -54,10 +54,6 @@ class UserManager
 
         $donnes = $q->fetch(PDO::FETCH_ASSOC);
         $user = new User($donnes);
-        if (is_null($user)){
-            header('HTTP', true, 500);
-            exit();
-        }
         return $user;
     }
 
@@ -87,6 +83,18 @@ class UserManager
         $this->save($user);
     }
 
+    public function toggleSnippet(User $user){
+
+        if ($user->getUserType()==0){
+            $user->setUserType(1);
+            $this->save($user);
+
+        } else if($user->getUserType()==1){
+            $user->setUserType(0);
+            $this->save($user);
+        }
+    }
+
     public function save(User $user) {
         //Create or Update otherwise
         $q = $this->db->prepare('SELECT id,userType, userName, imgURL, homePageURL, profileColour, description, passWord FROM users WHERE id = :id');
@@ -102,7 +110,11 @@ class UserManager
         {
             $this->update($user);
         }
-        $_SESSION['user'] = $user;
+    }
+
+    public function refreshSession(){
+        $updateUser = $this->find(user()->getId());
+        $_SESSION['user'] = $updateUser;
     }
 
     public function getAll() {
