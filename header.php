@@ -6,6 +6,10 @@
  * Time: 12:45
  */
 
+
+error_reporting(E_ALL);
+
+
 //This is the php header of all pages
 //It includes functions, and useful things like session
 
