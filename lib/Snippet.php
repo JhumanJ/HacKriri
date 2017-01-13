@@ -32,9 +32,12 @@ class Snippet
 
     public function __construct($title,$content)
     {
-        $date = new DateTime();
         $this->setTitle($title);
         $this->setContent($content);
+    }
+
+    public function completeAfterCreate(){
+        $date = new DateTime();
         $this->setPublishDate( $date->format('Y-m-d H:i:s'));
         $this->setUserId(user()->getId());
     }
@@ -43,6 +46,7 @@ class Snippet
         $newSnippet = new Snippet($donnes['title'],$donnes['content']);
         $newSnippet->setPublishDate($donnes['publishDate']);
         $newSnippet->setId($donnes['id']);
+        $newSnippet->setUserId($donnes['userId']);
         return $newSnippet;
     }
 

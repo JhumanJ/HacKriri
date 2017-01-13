@@ -25,6 +25,7 @@
             ?>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="profile"> <?php echo user()->getUserName(); ?> <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+            <li><a href="file"> My Files <span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></li>
             <?php if (user()->isAdmin()){?><li><a href="admin"> Admin </a></li><?php } ?>
             <li><a href="logout.php">Log out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
           </ul>

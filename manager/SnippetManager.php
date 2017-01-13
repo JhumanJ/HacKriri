@@ -72,4 +72,15 @@ class SnippetManager
         return $snippets;
     }
 
+    public function lastSnippet(User $user){
+        $q = $this->db->prepare('SELECT * FROM snippets WHERE userId = :userId LIMIT 1');
+        $q->execute(array(
+            'userId' => $user->getId()
+        ));
+
+        $donnes = $q->fetch(PDO::FETCH_ASSOC);
+        $snippet = Snippet::fromDatabase($donnes);
+        return $snippet;
+    }
+
 }

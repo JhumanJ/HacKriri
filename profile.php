@@ -10,8 +10,19 @@ require("header.php");
 $dbFactory = new DBFactory();
 $db = $dbFactory->getMysqlConnexionWithPDO();
 
-
-if(isLogged()){
+if(isset($_GET["user"])) {
+    if(isset($_GET["user"]) && $_GET["user"]!="") {
+        $userManager = new UserManager($db);
+        $user = $userManager->getUniqueUserName(htmlspecialchars($_GET["user"]));
+        $sessionUser = user();
+        $snippetManager= new SnippetManager($db);
+        $snippets = $snippetManager->userSnippet($user);
+        createPage('profile');
+    }else{
+        header("Location: index.php");
+        exit();
+    }
+} else if(isLogged()){
     // ------------ User is already logged -------------
     if(isset($_POST["_method"])){
         $userManager = new UserManager($db);
@@ -45,19 +56,11 @@ if(isLogged()){
         }
     }else{
         $user = user();
+        $snippetManager= new SnippetManager($db);
+        $snippets = $snippetManager->userSnippet($user);
         createPage('profile');
     }
 
-} else if(isset($_GET["user"])) {
-    if(isset($_GET["user"]) && $_GET["user"]!="") {
-        $userManager = new UserManager($db);
-        $user = $userManager->getUniqueUserName(htmlspecialchars($_GET["user"]));
-        $sessionUser = user();
-        createPage('profile');
-    }else{
-        header("Location: index.php");
-        exit();
-    }
 } else{
     //-------------- Visitor not user -------------------
     header("Location: index.php");

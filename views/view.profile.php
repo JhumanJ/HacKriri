@@ -7,6 +7,7 @@
  */
 
 global $user;
+global $snippets;
 ?>
 
 
@@ -40,7 +41,45 @@ global $user;
 
     </div>
 
-    
+    <?php if(isset($snippets)){?>
+    <h3>Snippets:</h3>
+    <table class="table table-hover">
+        <tr>
+            <th class="text-center">Title</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">See Snippet</th>
+            <?php
+            if (isLogged() && user()->getId()==$user->getId()){?>
+            <th class="text-center">Delete</th>
+            <?php }?>
+        </tr>
+        <?php
+        foreach ($snippets as $snippet){
+            ?>
+            <tr>
+                <td class="text-center"><?php echo $snippet->getTitle(); ?></td>
+                <td class="text-center"><?php echo $snippet->getPublishDate(); ?></td>
+                <td class="text-center">
+                    <form method="GET" action="snippet.php">
+                        <input name="id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
+                        <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+                <?php
+                if (isLogged() && user()->getId()==$user->getId()){?>
+                    <td class="text-center">
+                        <form method="post" action="snippet">
+                            <input name="_method" type="hidden" value="delete" />
+                            <input name="_id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
+                            <button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        </form>
+                    </td>
+                <?php }?>
+            </tr>
+            <?php
+        }}
+        ?>
+    </table>
 
 
 

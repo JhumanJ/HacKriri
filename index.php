@@ -16,7 +16,9 @@ $db = $dbFactory->getMysqlConnexionWithPDO();
 if(isLogged()){
     // ------------ User is already logged -------------
     $snippetManager = new SnippetManager($db);
+    $userManager = new UserManager($db);
     $snippets = $snippetManager->userSnippet(user());
+    $userLists = $userManager->getAll();
     createPage("home.logged");
 
 } elseif(isset($_POST["login"])&&$_POST["login"]=="111") {
@@ -75,6 +77,7 @@ if(isLogged()){
 } else {
     //--------- Visitor is on home page ---------------
     $userManager = new UserManager($db);
+    $snippetManager = new SnippetManager($db);
     createPage("home.visitor");
 
 }

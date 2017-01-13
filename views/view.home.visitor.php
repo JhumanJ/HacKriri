@@ -7,6 +7,7 @@
  */
 
 global $userManager;
+global $snippetManager;
 ?>
 
     <div class="container">
@@ -50,14 +51,14 @@ global $userManager;
                 foreach ($userManager->getAll() as $user){
                     ?>
                     <tr>
-                        <th class="text-center"><?php echo $user->getUserName(); ?></th>
-                        <th class="text-center"></th>
-                        <th class="text-center">
+                        <td class="text-center"><?php echo $user->getUserName(); ?></td>
+                        <td class="text-center"><a href="snippet?id=<?php echo $snippetManager->lastSnippet($user)->getId(); ?>"><?php echo $snippetManager->lastSnippet($user)->getTitle() ?></a></td>
+                        <td class="text-center">
                             <form method="GET" action="profile.php">
                                 <input name="user" type="hidden" value="<?php echo $user->getUserName(); ?>" />
                                 <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
                             </form>
-                        </th>
+                        </td>
                     </tr>
                     <?php
                 }

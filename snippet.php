@@ -13,17 +13,16 @@ $db = $dbFactory->getMysqlConnexionWithPDO();
 
 //If user is logged, show the logged home page
 //Otherwise show the visitor home page
+if (isset($_GET["id"])){
+    $snippetManager = new SnippetManager($db);
+    $userManager = new UserManager($db);
+    $snippet = $snippetManager->find((int)htmlspecialchars($_GET["id"]));
+    $author = $userManager->find($snippet->getUserId());
+    createPage('snippet');
+    exit();
+} else if(isLogged()){
 
-if(isLogged()){
-
-    if (isset($_GET["id"])){
-        $snippetManager = new SnippetManager($db);
-        $userManager = new UserManager($db);
-        $snippet = $snippetManager->find((int)htmlspecialchars($_GET["id"]));
-        $author = $userManager->find($snippet->getUserId());
-        createPage('snippet');
-        exit();
-    }else if(isset($_POST["_method"])){
+   if(isset($_POST["_method"])){
         if($_POST["_method"]=="create"){
             if(isset($_POST["title"]) && $_POST["title"]!=""){
                 $title = htmlspecialchars($_POST["title"]);
@@ -35,6 +34,7 @@ if(isLogged()){
                 //create snippet
                 $snippetManager = new SnippetManager($db);
                 $snippet = new Snippet($title,$content);
+                $snippet->completeAfterCreate();
                 $snippetManager->create($snippet);
 
                 $message = new Alert('success', true);
