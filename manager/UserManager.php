@@ -61,10 +61,9 @@ class UserManager
     }
 
     public function getUniqueUserName($userName) {
-        $q = $this->db->prepare('SELECT id,userType, userName, imgURL, homePageURL, profileColour, description, passWord FROM users WHERE userName = :userName');
-        $q->execute(array(
-            'userName' => $userName
-        ));
+        $query = "SELECT id,userType, userName, imgURL, homePageURL, profileColour, description, passWord FROM users WHERE userName = '".$userName."'";
+        $q = $this->db->prepare($query);
+        $q->execute();
 
         if ($q->rowCount()!=0) {
             $donnes = $q->fetch(PDO::FETCH_ASSOC);

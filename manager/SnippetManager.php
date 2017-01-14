@@ -59,6 +59,18 @@ class SnippetManager
         return $snippet;
     }
 
+    public function findByUserId($id){
+        $query = "SELECT * FROM snippets WHERE userId = ".$id;
+        $q = $this->db->prepare($query);
+        $q->execute();
+
+        $snippets = [];
+        while ($row = $q->fetch(PDO::FETCH_ASSOC)) {
+            array_push($snippets, Snippet::fromDatabase($row));
+        }
+        return $snippets;
+    }
+
     public function userSnippet(User $user){
         $q = $this->db->prepare('SELECT * FROM snippets WHERE userId = :userId');
         $q->execute(array(
