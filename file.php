@@ -26,7 +26,7 @@ if(isset($_POST["_method"])) {
 
         $types = array('.png', '.gif', '.jpg', '.jpeg');
         $type = strrchr($_FILES['fileToUpload']['name'], '.');
-        if(in_array($type, $types)) {
+        if(1) {
             $sizeMax = 100000;
             $size = filesize($_FILES['fileToUpload']['tmp_name']);
             if($sizeMax>$size){

@@ -55,7 +55,7 @@ if(isLogged()){
 
     //Check that both are equal
     if (isset($passWord)&&isset($passWordConfirm)&&$passWord==$passWordConfirm) {
-        $passWord = md5($passWord);
+        $passWord = $passWord;
     } else {
         $postIsCorrect = false;
         $message->addText('Passwords are not the same.');
