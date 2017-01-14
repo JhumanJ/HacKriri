@@ -33,16 +33,16 @@ if(isset($_GET["user"])) {
             if(isset($_POST["userName"]) && $_POST["userName"]!=""){
                 $user->setImgURL(htmlspecialchars($_POST["userName"]));
             }
-            if(isset($_POST["imgURL"])){
+            if(isset($_POST["imgURL"])&& $_POST["imgURL"]!=""){
                 $user->setImgURL(htmlspecialchars($_POST["imgURL"]));
             }
-            if(isset($_POST["profileColour"])){
+            if(isset($_POST["profileColour"])&& $_POST["profileColour"]!=""){
                 $user->setProfileColour(htmlspecialchars($_POST["profileColour"]));
             }
-            if(isset($_POST["homePageURL"])){
+            if(isset($_POST["homePageURL"])&& $_POST["homePageURL"]!=""){
                 $user->setHomePageURL(htmlspecialchars($_POST["homePageURL"]));
             }
-            if(isset($_POST["description"])){
+            if(isset($_POST["description"])&& $_POST["description"]!=""){
                 $user->setDescription(htmlspecialchars($_POST["description"]));
             }
             $userManager->save($user);

@@ -29,7 +29,7 @@ $user = user();
 
             <div class="form-group">
                 <label for="firstName">User Name:</label>
-                <input type="text" class="form-control" placeholder="User Name" name="userName" required value="<?php echo $user->getUserName(); ?>">
+                <input type="text" class="form-control" placeholder="User Name" name="userName" value="<?php echo $user->getUserName(); ?>">
             </div>
 
             <div class="form-group">
@@ -53,8 +53,6 @@ $user = user();
             </div>
 
             <input type="hidden" name="_method" value="update">
-            <input type="hidden" name="_id" value="<?php echo $user->getId(); ?>">
-
 
             <button id="submitBtn" class="btn btn-primary center-block" type="submit">Update <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
             </button>
