@@ -20,7 +20,7 @@ global $snippetManager;
 
             <h1 class="text-center"> HacKriri </h1>
 
-            <form action="index" method="post" id="loginForm">
+            <form action="index" method="get" id="loginForm">
 
                 <div class="form-group">
                     <label for="userName">User name:</label>

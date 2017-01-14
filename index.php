@@ -22,7 +22,7 @@ if(isLogged()){
     $userLists = $userManager->getAll();
     createPage("home.logged");
 
-} elseif(isset($_POST["login"])&&$_POST["login"]=="111") {
+} elseif(isset($_GET["login"])&&$_GET["login"]=="111") {
     //-------------- Login form completed --------------
 
     $loginCorrect = true;
@@ -31,15 +31,15 @@ if(isLogged()){
     $message = new Alert("danger",true);
 
     //test two fields
-    if (strlen($_POST["userName"])>=3) {
-        $userName = htmlspecialchars($_POST["userName"]);
+    if (strlen($_GET["userName"])>=3) {
+        $userName = htmlspecialchars($_GET["userName"]);
     } else {
         $loginCorrect = false;
         $message->addText('User name is not valid.');
     }
 
-    if ( strlen($_POST["passWord"])>=3) {
-        $passWord = htmlspecialchars($_POST["passWord"]);
+    if ( strlen($_GET["passWord"])>=3) {
+        $passWord = htmlspecialchars($_GET["passWord"]);
     } else {
         $loginCorrect = false;
         $message->addText('Password is not valid.');
@@ -59,7 +59,11 @@ if(isLogged()){
                 $message->addText('Hello <strong>' . $user->getUserName() . '</strong>!');
                 $message->messageToSession();
 
-                header('Location: index.php');
+                $snippetManager = new SnippetManager($db);
+                $userManager = new UserManager($db);
+                $snippets = $snippetManager->userSnippet(user());
+                $userLists = $userManager->getAll();
+                createPage("home.logged");
                 exit();
 
             } else {
@@ -73,12 +77,13 @@ if(isLogged()){
     $message->messageToSession();
     $userManager = new UserManager($db);
     createPage("home.visitor");
-
+    exit();
 
 } else {
     //--------- Visitor is on home page ---------------
     $userManager = new UserManager($db);
     $snippetManager = new SnippetManager($db);
     createPage("home.visitor");
+    exit();
 
 }

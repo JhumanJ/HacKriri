@@ -22,17 +22,6 @@ if(isset($_GET["user"])) {
         header("Location: index.php");
         exit();
     }
-}else if(isset($_GET["id"])) {
-    if(isset($_GET["id"]) && $_GET["id"]!="") {
-        $userManager = new UserManager($db);
-        $user = user();
-        $snippetManager= new SnippetManager($db);
-        $snippets = $snippetManager->findByUserId($_GET["id"]);
-        createPage('profile');
-    }else{
-        header("Location: index.php");
-        exit();
-    }
 } else if(isLogged()){
     // ------------ User is already logged -------------
     if(isset($_POST["_method"])){
@@ -65,11 +54,25 @@ if(isset($_GET["user"])) {
             header('Location: profile.php');
             exit();
         }
+    }else if(isset($_GET["id"])) {
+        if(isset($_GET["id"]) && $_GET["id"]!="") {
+            $userManager = new UserManager($db);
+            $user = user();
+            $snippetManager= new SnippetManager($db);
+            $snippets = $snippetManager->findByUserId($_GET["id"]);
+            createPage('profile');
+        }else{
+            header("Location: index.php");
+            exit();
+        }
     } else{
         header('Location: profile.php?id='.user()->getId());
     }
 } else{
     //-------------- Visitor not user -------------------
+    $message = new Alert('danger', true);
+    $message->addText('Error <strong>You can\'t be there!</strong>!');
+    $message->messageToSession();
     header("Location: index.php");
     exit();
 }
