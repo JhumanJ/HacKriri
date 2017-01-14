@@ -191,7 +191,7 @@ class User
 
     public function isAdmin(){
 
-        if ($this->getUserType() == 100){
+        if ($this->getUserType() >= 100){
             return true;
         }
         return false;

@@ -25,11 +25,11 @@ $user = user();
         Alert::displayMessage();
         ?>
 
-        <form action="profile" method="post">
+        <form action="profile" method="get">
 
             <div class="form-group">
                 <label for="firstName">User Name:</label>
-                <input type="text" class="form-control" placeholder="User Name" name="userName" required value="<?php echo $user->getUserName(); ?>">
+                <input type="text" class="form-control" placeholder="User Name" name="userName"  value="<?php echo $user->getUserName(); ?>">
             </div>
 
             <div class="form-group">
