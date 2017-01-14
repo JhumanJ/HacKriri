@@ -25,10 +25,10 @@ if (isset($_GET["id"])){
    if(isset($_POST["_method"])){
         if($_POST["_method"]=="create"){
             if(isset($_POST["title"]) && $_POST["title"]!=""){
-                $title = htmlspecialchars($_POST["title"]);
+                $title = $_POST["title"];
             }
             if(isset($_POST["content"]) && $_POST["content"]!=""){
-                $content = htmlspecialchars($_POST["content"]);
+                $content = $_POST["content"];
             }
             if(isset($content)&&isset($title)){
                 //create snippet
