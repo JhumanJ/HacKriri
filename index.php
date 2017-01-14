@@ -7,6 +7,7 @@
  */
 
 require("header.php");
+
 $dbFactory = new DBFactory();
 $db = $dbFactory->getMysqlConnexionWithPDO();
 

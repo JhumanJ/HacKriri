@@ -6,8 +6,11 @@
  * Date: 14/01/16
  * Time: 20:54
  */
+
 class UserManager
 {
+
+
     protected $db;
 
     public function __construct($db) {

@@ -6,14 +6,15 @@
  * Time: 12:45
  */
 
-
 error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
 
 //This is the php header of all pages
 //It includes functions, and useful things like session
 
 //Autoload every class needed
+
 function my_autoload($class_name) {
     if (is_file('lib/' . $class_name . '.php')) {
         require_once 'lib/' . $class_name . '.php';
