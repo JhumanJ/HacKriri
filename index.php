@@ -50,7 +50,7 @@ if(isLogged()){
         $userManager = new UserManager($db);
         if ($userManager->getUniqueUserName($userName) instanceof User) {
             $user = $userManager->getUniqueUserName($userName);
-            if ($user->getPassWord()==($passWord)){
+            if ($user->getPassWord()==md5($passWord)){
 
                 //Email exists and password is the good one then check that user email is confirmed.
 
