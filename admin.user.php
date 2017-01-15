@@ -149,6 +149,28 @@ if(isLogged() && user()->isAdmin() && isset($_POST["_method"])){
         exit();
     }
 
+} else if($_GET["_method"]=="snippet"){
+    //check that id is set
+    if(isset($_GET["_id"])){
+        $userManager = new UserManager($db);
+
+        $user = $userManager->find((int)htmlspecialchars($_GET["_id"]));
+
+        if ($user->isAdmin()){
+            $message = new Alert('danger', true);
+            $message->addText('<strong>Whoops</strong>! You can\'t change an admin\'s permission!');
+            $message->messageToSession();
+            header('Location: admin.php');
+            exit();
+        } else {
+            $userManager->toggleSnippet($user);
+            $message = new Alert('success', true);
+            $message->addText('<strong>Done</strong>! '.$user->getUserName().'\'s permission has been changed.');
+            $message->messageToSession();
+            header('Location: admin.php');
+            exit();
+        }
+    }
 } else {
 
     $message = new Alert('danger', true);

@@ -80,7 +80,9 @@ class User
             return "User";
         } else if ($this->userType==100){
             return "Admin";
-        } else {
+        } else if ($this->userType==0){
+            return "Basic User";
+        }else{
             return "Unknown";
         }
     }

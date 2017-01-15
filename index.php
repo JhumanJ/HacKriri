@@ -59,12 +59,15 @@ if(isLogged()){
                 $message->addText('Hello <strong>' . $user->getUserName() . '</strong>!');
                 $message->messageToSession();
 
-                $snippetManager = new SnippetManager($db);
-                $userManager = new UserManager($db);
-                $snippets = $snippetManager->userSnippet(user());
-                $userLists = $userManager->getAll();
-                createPage("home.logged");
-                exit();
+                if(isset($_GET["redirect"])){
+                    $redirect = 'Location: '.$_GET["redirect"];
+                    header($redirect);
+                    exit();
+                } else{
+                    header('Location: index.php');
+                    exit();
+                }
+
 
             } else {
                 $message->addText('Password invalid.');

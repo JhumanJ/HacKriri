@@ -32,6 +32,12 @@ global $snippetManager;
                     <input type="password" class="form-control" placeholder="Password" name="passWord" required>
                 </div>
 
+
+                <?php  if(isset($_GET["redirect"])){
+                    ?>
+                    <input type="hidden" name="redirect" value="<?php echo $_GET["redirect"]; ?>">
+                    <?php
+                } ?>
                 <input type="hidden" name="login" value="111">
 
                 <button type="submit" class="btn btn-primary center-block">Login</button>
