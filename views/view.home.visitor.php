@@ -49,16 +49,17 @@ global $snippetManager;
                     <th class="text-center">Link to Profile</th>
                 </tr>
                 <?php
-                
-                foreach ($userManager->getAll() as $user){
+                $list = $userManager->getAll();
+                foreach ($list as $item){
                     ?>
                     <tr>
-                        <td class="text-center"><?php echo $user->getUserName(); ?></td>
-                        <td class="text-center"><a href="snippet.php?id=<?php echo $snippetManager->lastSnippet($user)->getId(); ?>"><?php echo $snippetManager->lastSnippet($user)->getTitle() ?></a></td>
+                        <td class="text-center"><?php echo $item->getUserName(); ?></td>
+                        <?php $snippet = $snippetManager->lastSnippet($item);?>
+                        <td class="text-center"><a href="snippet.php?id=<?php echo $snippet->getId(); ?>"><?php echo $snippet->getTitle(); ?></a></td>
                         <td class="text-center">
                             <form method="GET" action="profile.php">
                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
-                                <input name="user" type="hidden" value="<?php echo $user->getUserName(); ?>" />
+                                <input name="user" type="hidden" value="<?php echo $item->getUserName(); ?>" />
                                 <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
                             </form>
                         </td>

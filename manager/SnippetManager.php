@@ -73,7 +73,7 @@ class SnippetManager
     }
 
     public function lastSnippet(User $user){
-        $q = $this->db->prepare('SELECT * FROM snippets WHERE userId = :userId LIMIT 1');
+        $q = $this->db->prepare('SELECT TOP 1 * FROM snippets WHERE userId = :userId ORDER BY publishDate;');
         $q->execute(array(
             'userId' => $user->getId()
         ));
