@@ -16,7 +16,7 @@
 
         <h1>File Upload</h1>
 
-        <form action="file" method="post" enctype="multipart/form-data">
+        <form action="file.php" method="post" enctype="multipart/form-data">
             Select <b>image</b> to upload:
             <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="hidden" name="_method" value="upload">

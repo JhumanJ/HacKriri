@@ -48,7 +48,7 @@ global $snippetManager;
                                         </form>
                                 </td>
                                 <td class="text-center">
-                                        <form method="post" action="snippet">
+                                        <form method="post" action="snippet.php">
                                                 <input name="_method" type="hidden" value="delete" />
                                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                                 <input name="_id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
@@ -76,7 +76,7 @@ global $snippetManager;
 
                         <tr>
                                 <td class="text-center"><?php echo $item->getUserName(); ?></td>
-                                <td class="text-center"><a href="snippet?id=<?php echo $snippetManager->lastSnippet($item)->getId(); ?>"><?php echo $snippetManager->lastSnippet($item)->getTitle(); ?></a></td>
+                                <td class="text-center"><a href="snippet.php?id=<?php echo $snippetManager->lastSnippet($item)->getId(); ?>"><?php echo $snippetManager->lastSnippet($item)->getTitle(); ?></a></td>
                                 <td class="text-center">
                                         <form method="GET" action="profile.php">
                                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">

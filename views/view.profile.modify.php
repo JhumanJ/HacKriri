@@ -25,7 +25,7 @@ $user = user();
         Alert::displayMessage();
         ?>
 
-        <form action="profile" method="post">
+        <form action="profile.php" method="post">
 
             <div class="form-group">
                 <label for="firstName">User Name:</label>

@@ -35,7 +35,7 @@ global $userManager;
                         <th class="text-center"><?php echo $user->getUserName(); ?></th>
                         <th class="text-center"><?php echo $user->userType(); ?></th>
                         <th class="text-center">
-                            <form method="post" action="admin.user">
+                            <form method="post" action="admin.user.php">
                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                 <input name="_method" type="hidden" value="admin" />
                                 <input name="_id" type="hidden" value="<?php echo $user->getId(); ?>" />
@@ -43,7 +43,7 @@ global $userManager;
                             </form>
                         </th>
                         <th class="text-center">
-                            <form method="post" action="admin.user">
+                            <form method="post" action="admin.user.php">
                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                 <input name="_method" type="hidden" value="snippet" />
                                 <input name="_id" type="hidden" value="<?php echo $user->getId(); ?>" />
@@ -51,7 +51,7 @@ global $userManager;
                             </form>
                         </th>
                         <th class="text-center">
-                            <form method="post" action="admin.user">
+                            <form method="post" action="admin.user.php">
                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                 <input name="_method" type="hidden" value="modify" />
                                 <input name="_id" type="hidden" value="<?php echo $user->getId(); ?>" />
@@ -59,7 +59,7 @@ global $userManager;
                             </form>
                         </th>
                         <th class="text-center">
-                            <form method="post" action="admin.user">
+                            <form method="post" action="admin.user.php">
                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                 <input name="_method" type="hidden" value="delete" />
                                 <input name="_id" type="hidden" value="<?php echo $user->getId(); ?>" />

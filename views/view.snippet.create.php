@@ -15,7 +15,7 @@
 
     <h1>Create Snippet</h1>
 
-    <form action="snippet" method="post">
+    <form action="snippet.php" method="post">
 
         <div class="form-group">
             <label for="title">Title:</label>

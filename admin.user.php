@@ -7,7 +7,12 @@
  */
 
 
-
+require('lib/DBFactory.php');
+require('manager/UserManager.php');
+require('manager/SnippetManager.php');
+require('lib/Alert.php');
+require('lib/Snippet.php');
+require('lib/User.php');
 require("header.php");
 $dbFactory = new DBFactory();
 $db = $dbFactory->getMysqlConnexionWithPDO();

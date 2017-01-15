@@ -23,7 +23,7 @@ global $snippets;
     <?php
     if (isLogged() && user()->getId()==$user->getId()){
         ?>
-        <form method="post" action="profile">
+        <form method="post" action="profile.php">
             <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
 
             <input name="_method" type="hidden" value="modify" />
@@ -71,7 +71,7 @@ global $snippets;
                 <?php
                 if (isLogged() && user()->getId()==$user->getId()){?>
                     <td class="text-center">
-                        <form method="post" action="snippet">
+                        <form method="post" action="snippet.php">
                             <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                             <input name="_method" type="hidden" value="delete" />
                             <input name="_id" type="hidden" value="<?php echo $snippet->getId(); ?>" />

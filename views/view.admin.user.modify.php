@@ -27,7 +27,7 @@ global $user;
                 Alert::displayMessage();
             ?>
 
-            <form action="admin.user" method="post">
+            <form action="admin.user.php" method="post">
 
                 <div class="form-group">
                     <label for="firstName">User Name:</label>

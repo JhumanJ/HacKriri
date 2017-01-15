@@ -8,21 +8,22 @@
 
 
 error_reporting(E_ALL);
-
+ini_set('display_errors', 1);
 
 //This is the php header of all pages
 //It includes functions, and useful things like session
 
 //Autoload every class needed
-function my_autoload($class_name) {
-    if (is_file('lib/' . $class_name . '.php')) {
-        require_once 'lib/' . $class_name . '.php';
-    } else if (is_file('manager/' . $class_name . '.php')) {
-        require_once 'manager/' . $class_name . '.php';
-    }
-}
+//
+//function my_autoload($class_name) {
+//    if (is_file('lib/' . $class_name . '.php')) {
+//        require 'lib/' . $class_name . '.php';
+//    } else if (is_file('manager/' . $class_name . '.php')) {
+//        require 'manager/' . $class_name . '.php';
+//    }
+//}
 
-spl_autoload_register("my_autoload");
+//spl_autoload_register("my_autoload");
 
 //Session call
 session_start();

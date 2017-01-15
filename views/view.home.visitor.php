@@ -20,7 +20,7 @@ global $snippetManager;
 
             <h1 class="text-center"> HacKriri </h1>
 
-            <form action="index" method="post" id="loginForm">
+            <form action="index.php" method="post" id="loginForm">
 
                 <div class="form-group">
                     <label for="userName">User name:</label>
@@ -49,11 +49,12 @@ global $snippetManager;
                     <th class="text-center">Link to Profile</th>
                 </tr>
                 <?php
+                
                 foreach ($userManager->getAll() as $user){
                     ?>
                     <tr>
                         <td class="text-center"><?php echo $user->getUserName(); ?></td>
-                        <td class="text-center"><a href="snippet?id=<?php echo $snippetManager->lastSnippet($user)->getId(); ?>"><?php echo $snippetManager->lastSnippet($user)->getTitle() ?></a></td>
+                        <td class="text-center"><a href="snippet.php?id=<?php echo $snippetManager->lastSnippet($user)->getId(); ?>"><?php echo $snippetManager->lastSnippet($user)->getTitle() ?></a></td>
                         <td class="text-center">
                             <form method="GET" action="profile.php">
                                 <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">

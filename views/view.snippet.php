@@ -19,4 +19,4 @@ global $author;
     <h1><?php echo $snippet->getTitle(); ?></h1>
 
     <p><?php echo $snippet->getContent();?></p>
-    <p><b>Published the <?php echo $snippet->getPublishDate();?> by </b><a href="profile?user=<?php echo $author->getUserName();?>"><?php echo $author->getUserName();?></a></p>
+    <p><b>Published the <?php echo $snippet->getPublishDate();?> by </b><a href="profile.php?user=<?php echo $author->getUserName();?>"><?php echo $author->getUserName();?></a></p>

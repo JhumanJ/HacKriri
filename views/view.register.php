@@ -65,10 +65,10 @@
         ?>
 
         <h1>HacKriri</h1>
-        <form action="register" method="post" id="registerForm">
+        <form action="register.php" method="post" id="registerForm">
 
             <div class="form-group">
-                <label for="firstName">User Name:</label>
+                <label for="firstName">UserName:</label>
                 <input type="text" class="form-control" placeholder="First Name" name="userName" required <?php
                     if (isset($correctFields) && isset($correctFields['firstName'])) {
                         echo 'value="'.$correctFields['firstName'].'""';
@@ -89,9 +89,10 @@
 
             <input type="hidden" name="register" value="111">
 
+            <button id="submitBtn" class="btn btn-primary center-block">Register</button>
+
         </form>
 
-        <button id="submitBtn" class="btn btn-primary center-block">Register</button>
 
     </div>
 </div>
