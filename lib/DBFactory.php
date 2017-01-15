@@ -12,8 +12,9 @@ class DBFactory
     public static function getMysqlConnexionWithPDO(){
         //$db = new PDO('mysql:host=localhost;dbname=unisales','root', 'root');
 
-        $db = new PDO('mysql:host=localhost;dbname=HacKriri','root', 'root');
+        $db = new PDO("sqlsrv:server = tcp:hackririsql.database.windows.net,1433; Database = HacKririSQL", "hackriri", "Romain96");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
         return $db;
     }
