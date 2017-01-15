@@ -20,7 +20,7 @@ if (isset($_GET["id"])){
     $author = $userManager->find($snippet->getUserId());
     createPage('snippet');
     exit();
-} else if(isLogged()){
+} else if(isLogged() && user()->canPublish()){
 
    if(isset($_POST["_method"])){
         if($_POST["_method"]=="create"){

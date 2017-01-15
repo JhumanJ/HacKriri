@@ -22,7 +22,7 @@ global $snippetManager;
         <h1>Home</h1>
 
         <div>
-                <A href="snippet.php"><button class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Snippet</button></A>
+                <A href="snippet.php"><button <?php if(!user()->canPublish()){echo 'disabled';}?> class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Snippet</button></A>
         </div>
 
         <br>
