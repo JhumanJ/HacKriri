@@ -43,12 +43,14 @@ global $snippetManager;
                                 <td class="text-center">
                                         <form method="GET" action="snippet.php">
                                                 <input name="id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
+                                                <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                                 <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
                                         </form>
                                 </td>
                                 <td class="text-center">
                                         <form method="post" action="snippet">
                                                 <input name="_method" type="hidden" value="delete" />
+                                                <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                                 <input name="_id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
                                                 <button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                                         </form>
@@ -77,6 +79,7 @@ global $snippetManager;
                                 <td class="text-center"><a href="snippet?id=<?php echo $snippetManager->lastSnippet($item)->getId(); ?>"><?php echo $snippetManager->lastSnippet($item)->getTitle(); ?></a></td>
                                 <td class="text-center">
                                         <form method="GET" action="profile.php">
+                                                <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                                 <input name="user" type="hidden" value="<?php echo $item->getUserName(); ?>" />
                                                 <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
                                         </form>

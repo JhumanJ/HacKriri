@@ -54,6 +54,8 @@ if(isLogged()){
                 //Email exists and password is the good one then check that user email is confirmed.
 
                 $_SESSION['user'] = $user;
+                $_SESSION["token"] = md5(uniqid(mt_rand(), true));
+
                 $message = new Alert('info', true);
                 $message->addText('Hello <strong>' . $user->getUserName() . '</strong>!');
                 $message->messageToSession();

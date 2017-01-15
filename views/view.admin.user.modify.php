@@ -57,6 +57,7 @@ global $user;
                 <input type="hidden" name="_method" value="update">
                 <input type="hidden" name="_id" value="<?php echo $user->getId(); ?>">
 
+                <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
 
                 <button id="submitBtn" class="btn btn-primary center-block" type="submit">Update <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
                 </button>

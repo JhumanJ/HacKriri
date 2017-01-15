@@ -33,6 +33,7 @@ global $snippetManager;
                 </div>
 
                 <input type="hidden" name="login" value="111">
+                <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
 
                 <button type="submit" class="btn btn-primary center-block">Login</button>
                 <br>
@@ -55,6 +56,7 @@ global $snippetManager;
                         <td class="text-center"><a href="snippet?id=<?php echo $snippetManager->lastSnippet($user)->getId(); ?>"><?php echo $snippetManager->lastSnippet($user)->getTitle() ?></a></td>
                         <td class="text-center">
                             <form method="GET" action="profile.php">
+                                <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                                 <input name="user" type="hidden" value="<?php echo $user->getUserName(); ?>" />
                                 <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
                             </form>

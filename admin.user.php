@@ -13,7 +13,7 @@ $dbFactory = new DBFactory();
 $db = $dbFactory->getMysqlConnexionWithPDO();
 
 
-if(isLogged() && user()->isAdmin() && isset($_POST["_method"])){
+if(isLogged() && user()->isAdmin() && isset($_POST["_method"]) && isCSRFSafe()){
 
     $userManager = new UserManager($db);
 

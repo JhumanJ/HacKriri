@@ -47,6 +47,16 @@ function isLogged() {
     }
 }
 
+function isCSRFSafe(){
+    if (isset($_GET["csrf"]) && $_GET["csrf"] == $_SESSION["token"]) {
+        return true;
+    }
+    if (isset($_POST["csrf"]) && $_POST["csrf"] == $_SESSION["token"]) {
+        return true;
+    }
+    return false;
+}
+
 function user(){
     if(isset($_SESSION['user']) && $_SESSION['user'] instanceof User) {
         $user = $_SESSION['user'];

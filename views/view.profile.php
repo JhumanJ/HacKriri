@@ -24,6 +24,8 @@ global $snippets;
     if (isLogged() && user()->getId()==$user->getId()){
         ?>
         <form method="post" action="profile">
+            <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
+
             <input name="_method" type="hidden" value="modify" />
             <input name="_id" type="hidden" value="<?php echo $user->getId(); ?>" />
             <button class="btn btn-xs btn-primary" type="submit">Edit my profile</button>
@@ -61,6 +63,7 @@ global $snippets;
                 <td class="text-center"><?php echo $snippet->getPublishDate(); ?></td>
                 <td class="text-center">
                     <form method="GET" action="snippet.php">
+                        <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                         <input name="id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
                         <button class="btn btn-xs btn-primary" type="submit"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
                     </form>
@@ -69,6 +72,7 @@ global $snippets;
                 if (isLogged() && user()->getId()==$user->getId()){?>
                     <td class="text-center">
                         <form method="post" action="snippet">
+                            <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
                             <input name="_method" type="hidden" value="delete" />
                             <input name="_id" type="hidden" value="<?php echo $snippet->getId(); ?>" />
                             <button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>

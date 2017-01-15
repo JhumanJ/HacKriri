@@ -20,6 +20,7 @@
             Select <b>image</b> to upload:
             <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="hidden" name="_method" value="upload">
+            <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
             <button type="submit" name="submit" class="btn btn-primary">Upload File</button>
         </form>
 

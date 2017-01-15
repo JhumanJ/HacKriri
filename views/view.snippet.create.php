@@ -28,6 +28,8 @@
         </div>
 
         <input type="hidden" name="_method" value="create">
+        <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
+        <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
 
         <button id="submitBtn" class="btn btn-primary center-block" type="submit">Update <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
         </button>

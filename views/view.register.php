@@ -85,6 +85,7 @@
                 <label for="passWordConfirm">Confirm password:</label>
                 <input id="passWordConfirm" type="password" class="form-control" placeholder="Password" name="passWordConfirm" required>
             </div>
+            <input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
 
             <input type="hidden" name="register" value="111">
 
